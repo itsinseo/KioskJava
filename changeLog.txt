@@ -11,3 +11,6 @@ Order 클래스 작성: 상품(Product) 객체를 담을 좋은 방법이 딱히
 
 -- 2023-05-30 AM 11:54
 Main 파일 줄이기 위해 Methods.java 파일 생성: static 메서드들 담아보려고 함.
+
+-- 2023-05-30 PM 2:46
+Methods.java -> Display.java 로 변경

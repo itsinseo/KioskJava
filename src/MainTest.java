@@ -20,16 +20,10 @@ public class MainTest {
     }
 
     public static void main(String[] args) {
-        test1();
-        test2();
-
-        Methods.test1();
-        Methods.test2();
-
         System.out.println("\nbefore method:");
         System.out.printf("name: %s, desc: %s, price: %.2f\n", pTest.name, pTest.desc, pTest.price);
 
-        Methods.productTest(pTest);
+        Display.productTest(pTest);
         System.out.println("\nafter method:");
         System.out.printf("name: %s, desc: %s, price: %.2f\n", pTest.name, pTest.desc, pTest.price);
     }
