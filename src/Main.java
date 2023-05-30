@@ -80,6 +80,7 @@ public class Main {
     }
 
     public static void order() {
+        // 4. 주문 화면
         double totalPrice = 0;
         System.out.println("아래와 같이 주문 하시겠습니까? \n");
         System.out.println("[ Orders ]");
@@ -94,6 +95,7 @@ public class Main {
     }
 
     public static void orderComplete() {
+        // 5. 주문완료 화면
         System.out.println("주문이 완료되었습니다!\n");
         System.out.println("대기번호는 [ " + waitNum + " ] 번 입니다.");
         orders.productArrayList.clear();
@@ -108,6 +110,7 @@ public class Main {
     }
 
     public static void cancel() {
+        // 6. 주문취소 화면
         Scanner sc = new Scanner(System.in);
 
         System.out.println("진행하던 주문을 취소하시겠습니까?");
