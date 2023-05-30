@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class Main {
+public class MainTest {
     static Product[] burgers = new Product[5];
     static Product[] custards = new Product[3];
     static Product[] drinks = new Product[4];
