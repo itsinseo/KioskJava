@@ -1,5 +1,3 @@
-import java.util.Scanner;
-
 public class MainTest {
     static Menu[] menuArray = Menu.initialize();
     static Order orders = new Order();
