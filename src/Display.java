@@ -96,6 +96,5 @@ public class Display {
             System.out.println("진행하던 주문이 취소되었습니다.");
             orders.pList.clear();
         }
-        sc.close();
     }
 }
