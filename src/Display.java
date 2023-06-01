@@ -114,7 +114,7 @@ public class Display {
     public static void totalSales(Order sales) {
         //선택 3. 총 판매금액 조회 기능 추가
         System.out.println("[ 총 판매금액 현황 ]");
-        System.out.printf("현재까지 총 판매된 금액은 [ %.2f ] 입니다.\n\n", sales.getTotalSales());
+        System.out.printf("현재까지 총 판매된 금액은 [ W %.2f ] 입니다.\n\n", sales.getTotalSales());
     }
 
     public static void totalList(Order sales) {
