@@ -27,3 +27,14 @@ Order에 데이터를 추가하는 것은 표시가 아니라 데이터 변경�
 
 -- 2023-05-31 PM 8:33
 필드 private, getter setter 작성 필요
+
+-- 2023-06-01 PM 4:40
+Main static variables moved to main method
+Display.order() is now connected to Display.orderComplete()
+instance members are now private; added getter and setter for Menu, Product, Order classes
+waitNum moved from Main(static var) to Order(int)
+MainTest deleted
+Menu.initialize() moved to new class MenuInit
+고민 1: 객체들을 아예 Display.java로 다 옮기고 그 안에서 메서드간 호출을 이용할지(Main.java의 객체를 없애고 코드를 줄이기 위함)
+고민 2: 귀찮긴 하지만 Order에 추가하는 메서드는 Cart.java로 옮길지
+고민 3: 추가 요구사항(옵션 등) 구현 할지 말지
