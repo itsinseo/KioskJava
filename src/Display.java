@@ -45,11 +45,15 @@ public class Display {
         int n3 = sc.nextInt();
         if (n3 == 1) {
             System.out.println(p.getName() + " 가 장바구니에 추가되었습니다.");
-            orders.getpList().add(p);
+            if (orders.getpList().contains(p)) {
+                p.setAmount(p.getAmount() + 1);
+            } else {
+                orders.getpList().add(p);
+            }
         }
     }
 
-    public static void order(Order orders) {
+    public static void order(Order orders, Order sales) {
         // 4. 주문 화면
         Scanner sc = new Scanner(System.in);
 
@@ -57,8 +61,8 @@ public class Display {
         System.out.println("아래와 같이 주문 하시겠습니까? \n");
         System.out.println("[ Orders ]");
         for (Product p : orders.getpList()) {
-            System.out.printf("%-20s | W %4.2f | %s\n", p.getName(), p.getPrice(), p.getDesc());
-            totalPrice += p.getPrice();
+            System.out.printf("%-20s | W %4.2f | %d개 | %s\n", p.getName(), p.getPrice(), p.getAmount(), p.getDesc());
+            totalPrice += p.getPrice() * p.getAmount();
         }
         System.out.println("\n[ Total ]");
         System.out.printf("W %.2f\n\n", totalPrice);
@@ -66,14 +70,18 @@ public class Display {
         System.out.println("1. 주문        2. 메뉴판");
 
         if (sc.nextInt() == 1) {
-            orderComplete(orders, orders.getWaitNum());
+            orderComplete(orders, orders.getWaitNum(), sales);
         }
     }
 
-    public static void orderComplete(Order orders, int waitNum) {
+    public static void orderComplete(Order orders, int waitNum, Order sales) {
         // 5. 주문완료 화면
         System.out.println("주문이 완료되었습니다!\n");
         System.out.println("대기번호는 [ " + waitNum + " ] 번 입니다.");
+        for (Product p : orders.getpList()) {
+            sales.getpList().add(p);
+            sales.setTotalSales(sales.getTotalSales() + p.getPrice() * p.getAmount());
+        }
         orders.getpList().clear();
 
         try {
@@ -97,5 +105,19 @@ public class Display {
             System.out.println("진행하던 주문이 취소되었습니다.");
             orders.getpList().clear();
         }
+    }
+
+    public static void totalSales(Order sales){
+        System.out.println("[ 총 판매금액 현황 ]");
+        System.out.printf("현재까지 총 판매된 금액은 [ %.2f ] 입니다.\n\n", sales.getTotalSales());
+    }
+
+    public static void totalList(Order sales){
+        System.out.println("[ 총 판매상품 목록 현황 ]");
+        System.out.println("현재까지 총 판매된 상품 목록은 아래와 같습니다.\n");
+        for(Product p: sales.getpList()){
+            System.out.printf("- %-20s | W %.2f | %d개\n", p.getName(), p.getPrice(), p.getAmount());
+        }
+        System.out.println("\n자동으로 메인 화면으로 돌아갑니다.");
     }
 }

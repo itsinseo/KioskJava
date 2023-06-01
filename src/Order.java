@@ -1,9 +1,9 @@
-import java.util.ArrayList;
+import java.util.LinkedList;
 
 public class Order {
-    private ArrayList<Product> pList = new ArrayList<>();
-    private Product p;
+    private LinkedList<Product> pList = new LinkedList<>();
     private int waitNum = 1;
+    private double totalSales = 0;
 
     public int getWaitNum() {
         return waitNum;
@@ -13,19 +13,19 @@ public class Order {
         this.waitNum = waitNum;
     }
 
-    public ArrayList<Product> getpList() {
+    public LinkedList<Product> getpList() {
         return pList;
     }
 
-    public void setpList(ArrayList<Product> pList) {
+    public void setpList(LinkedList<Product> pList) {
         this.pList = pList;
     }
 
-    public Product getP() {
-        return p;
+    public double getTotalSales() {
+        return totalSales;
     }
 
-    public void setP(Product p) {
-        this.p = p;
+    public void setTotalSales(double totalSales) {
+        this.totalSales = totalSales;
     }
 }

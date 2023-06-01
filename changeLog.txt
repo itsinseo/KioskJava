@@ -38,3 +38,8 @@ Menu.initialize() moved to new class MenuInit
 고민 1: 객체들을 아예 Display.java로 다 옮기고 그 안에서 메서드간 호출을 이용할지(Main.java의 객체를 없애고 코드를 줄이기 위함)
 고민 2: 귀찮긴 하지만 Order에 추가하는 메서드는 Cart.java로 옮길지
 고민 3: 추가 요구사항(옵션 등) 구현 할지 말지
+
+-- 2023-06-01 PM 6:17
+Added Display.totalSales(), Display.totalList(), Order sales = new Order() at Main
+**Main.java methods, objects need to be moved to another class(such as Display)**
+추가 요구사항
