@@ -44,3 +44,9 @@ Added Display.totalSales(), Display.totalList(), Order sales = new Order() at Ma
 **Main.java methods, objects need to be moved to another class(such as Display)**
 Product.amount is now used for Extra Function 1
 Extra Function 1, 3, 4 done
+
+--2023-06-02 AM 8:22
+Added Product.option; option method not added yet
+Removed Product.amount; Changed Order.LinkedList<Product> to Order.LinkedHashMap<Product, Integer>, amount is now saved at LinkedHashMap<Product, Integer> orderMap
+Product에 amount 필드를 추가한 것은 굉장히 위험한 방법이었다. 왜냐하면 amount 필드를 재사용할 생각이었는데, 주문 수량을 바꾸는 과정에서 amount의 값 자체를 바꾸는 방식을 사용했고,
+이는 객체 자체의 값이 달라지는 것이기 때문에 다음 주문에서까지 영향을 받게 되는 방식이었기 때문이다.

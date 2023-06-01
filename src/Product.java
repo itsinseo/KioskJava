@@ -1,6 +1,6 @@
 public class Product extends Menu {
     private double price;
-    int amount = 1;
+    private double option;
 
     public Product(String name, String desc, double price) {
         super(name, desc);
@@ -15,11 +15,11 @@ public class Product extends Menu {
         this.price = price;
     }
 
-    public int getAmount() {
-        return amount;
+    public double getOption() {
+        return option;
     }
 
-    public void setAmount(int amount) {
-        this.amount = amount;
+    public void setOption(double option) {
+        this.option = option;
     }
 }

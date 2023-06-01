@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 public class Display {
     public static int mainMenu(Menu[] menuArray) {
-        // 1. 메인 메뉴판 화면
+        //필수 1. 메인 메뉴판 화면
         Scanner sc = new Scanner(System.in);
 
         System.out.println("\n\"SHAKESHACK BURGER 에 오신걸 환영합니다.\"");
@@ -19,7 +19,7 @@ public class Display {
     }
 
     public static int productMenu(Menu[] menuArray, int n1) {
-        // 2. 상품 메뉴판 화면
+        //필수 2. 상품 메뉴판 화면
         Scanner sc = new Scanner(System.in);
 
         System.out.println("\n\"SHAKESHACK BURGER 에 오신걸 환영합니다.\"");
@@ -35,7 +35,7 @@ public class Display {
     }
 
     public static void addToCartMenu(Product p, Order orders) {
-        // 3. 구매 화면
+        //필수 3. 구매 화면
         Scanner sc = new Scanner(System.in);
 
         System.out.printf("\"%-20s | W %4.2f | %s\"\n", p.getName(), p.getPrice(), p.getDesc());
@@ -44,25 +44,28 @@ public class Display {
 
         int n3 = sc.nextInt();
         if (n3 == 1) {
+            //선택 1. 주문개수 기능 추가: 입력 부분
             System.out.println(p.getName() + " 가 장바구니에 추가되었습니다.");
-            if (orders.getpList().contains(p)) {
-                p.setAmount(p.getAmount() + 1);
+            if (orders.getOrderMap().containsKey(p)) {
+                System.out.println(orders.getOrderMap().get(p) + "개가 이미 카트에 있네요 주문 수량을 늘립니다.");
+                orders.getOrderMap().replace(p, orders.getOrderMap().get(p) + 1);
             } else {
-                orders.getpList().add(p);
+                System.out.println("카트에 없으니 새로 추가합니다.");
+                orders.getOrderMap().put(p, 1);
             }
         }
     }
 
     public static void order(Order orders, Order sales) {
-        // 4. 주문 화면
+        //필수 4. 주문 화면
         Scanner sc = new Scanner(System.in);
 
         double totalPrice = 0;
         System.out.println("아래와 같이 주문 하시겠습니까? \n");
         System.out.println("[ Orders ]");
-        for (Product p : orders.getpList()) {
-            System.out.printf("%-20s | W %4.2f | %d개 | %s\n", p.getName(), p.getPrice(), p.getAmount(), p.getDesc());
-            totalPrice += p.getPrice() * p.getAmount();
+        for (Product p : orders.getOrderMap().keySet()) {
+            System.out.printf("%-20s | W %4.2f | %d개 | %s\n", p.getName(), p.getPrice(), orders.getOrderMap().get(p), p.getDesc());
+            totalPrice += p.getPrice() * orders.getOrderMap().get(p);
         }
         System.out.println("\n[ Total ]");
         System.out.printf("W %.2f\n\n", totalPrice);
@@ -75,14 +78,15 @@ public class Display {
     }
 
     public static void orderComplete(Order orders, int waitNum, Order sales) {
-        // 5. 주문완료 화면
+        //필수 5. 주문완료 화면
         System.out.println("주문이 완료되었습니다!\n");
         System.out.println("대기번호는 [ " + waitNum + " ] 번 입니다.");
-        for (Product p : orders.getpList()) {
-            sales.getpList().add(p);
-            sales.setTotalSales(sales.getTotalSales() + p.getPrice() * p.getAmount());
+        //선택 1. 주문개수 기능 추가: 출력 부분
+        for (Product p : orders.getOrderMap().keySet()) {
+            sales.getOrderMap().put(p, orders.getOrderMap().get(p));
+            sales.setTotalSales(sales.getTotalSales() + p.getPrice() * sales.getOrderMap().get(p));
         }
-        orders.getpList().clear();
+        orders.getOrderMap().clear();
 
         try {
             System.out.println("(3초 후 메뉴판으로 돌아갑니다.)");
@@ -94,7 +98,7 @@ public class Display {
     }
 
     public static void cancel(Order orders) {
-        // 6. 주문취소 화면
+        //필수 6. 주문취소 화면
         Scanner sc = new Scanner(System.in);
 
         System.out.println("진행하던 주문을 취소하시겠습니까?");
@@ -103,21 +107,29 @@ public class Display {
         int n = sc.nextInt();
         if (n == 1) {
             System.out.println("진행하던 주문이 취소되었습니다.");
-            orders.getpList().clear();
+            orders.getOrderMap().clear();
         }
     }
 
-    public static void totalSales(Order sales){
+    public static void totalSales(Order sales) {
+        //선택 3. 총 판매금액 조회 기능 추가
         System.out.println("[ 총 판매금액 현황 ]");
         System.out.printf("현재까지 총 판매된 금액은 [ %.2f ] 입니다.\n\n", sales.getTotalSales());
     }
 
-    public static void totalList(Order sales){
+    public static void totalList(Order sales) {
+        //선택 4. 총 판매상품 목록 조회 기능 추가
+        Scanner sc = new Scanner(System.in);
+
         System.out.println("[ 총 판매상품 목록 현황 ]");
         System.out.println("현재까지 총 판매된 상품 목록은 아래와 같습니다.\n");
-        for(Product p: sales.getpList()){
-            System.out.printf("- %-20s | W %.2f | %d개\n", p.getName(), p.getPrice(), p.getAmount());
+        for (Product p : sales.getOrderMap().keySet()) {
+            System.out.printf("- %-20s | W %.2f | %d개\n", p.getName(), p.getPrice(), sales.getOrderMap().get(p));
         }
-        System.out.println("\n자동으로 메인 화면으로 돌아갑니다.");
+        System.out.println("\n1. 돌아가기");
+        int n = sc.nextInt();
+        if (n == 1) {
+            return;
+        }
     }
 }

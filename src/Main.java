@@ -18,6 +18,7 @@ public class Main {
             } else if (n1 == -1) {
                 break;
             } else if (n1==0) {
+                //총 판매 액수 & 목록
                 Display.totalSales(sales);
                 Display.totalList(sales);
             }

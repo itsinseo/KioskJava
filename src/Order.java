@@ -1,7 +1,7 @@
-import java.util.LinkedList;
+import java.util.LinkedHashMap;
 
 public class Order {
-    private LinkedList<Product> pList = new LinkedList<>();
+    private LinkedHashMap<Product, Integer> orderMap = new LinkedHashMap<>();
     private int waitNum = 1;
     private double totalSales = 0;
 
@@ -13,12 +13,8 @@ public class Order {
         this.waitNum = waitNum;
     }
 
-    public LinkedList<Product> getpList() {
-        return pList;
-    }
-
-    public void setpList(LinkedList<Product> pList) {
-        this.pList = pList;
+    public LinkedHashMap<Product, Integer> getOrderMap() {
+        return orderMap;
     }
 
     public double getTotalSales() {
