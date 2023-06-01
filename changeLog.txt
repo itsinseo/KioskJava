@@ -42,4 +42,5 @@ Menu.initialize() moved to new class MenuInit
 -- 2023-06-01 PM 6:17
 Added Display.totalSales(), Display.totalList(), Order sales = new Order() at Main
 **Main.java methods, objects need to be moved to another class(such as Display)**
-추가 요구사항
+Product.amount is now used for Extra Function 1
+Extra Function 1, 3, 4 done
