@@ -22,8 +22,6 @@ public class Main {
                 Display.totalSales(sales);
                 Display.totalList(sales);
             }
-
-
             else {
                 //상품 메뉴
                 int n2 = Display.productMenu(menuArray, n1 - 1);
